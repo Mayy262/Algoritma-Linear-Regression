@@ -1,6 +1,6 @@
 ---
-title: "My Document"
-author: "Deden Istiawan-Institut Teknologi Statistika dan Bisnis Muhammadiyah"
+title: "Algoritma Linear Regression dengan R"
+author: "Sifa'ul Kumairoh-Institut Teknologi Statistika dan Bisnis Muhammadiyah"
 date: "`r Sys.Date()`"
 output: 
   html_document:
