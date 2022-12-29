@@ -2796,23 +2796,37 @@ learning - reinforement learning.</p>
 <p>Regresi merupakan machine learning kategori supervised learning
 dengan target data berupa data numerik. Regresi banyak digunakan dalam
 berbagai area, seperti pendidikan, hukum, industri, bisnis, ramalan
-keuangan, pemodelan keuangan, perencanaan pasar, dan analisis tren.
-Linear regression merupakan salah satu metode yang biasanya digunakan
-untuk melakukan prediksi (menggunakan garis lurus) sehingga bisa dilihat
-dan bisa menggambarkan hubungan antara dua variabel atau lebih. Linear
-regression dimasukkan ke dalam klasifikasi supervised learning.</p>
+keuangan, pemodelan keuangan, perencanaan pasar, dan analisis tren (Mike
+Capple,2019). Linear regression merupakan salah satu metode yang
+biasanya digunakan untuk melakukan prediksi (menggunakan garis lurus)
+sehingga bisa dilihat dan bisa menggambarkan hubungan antara dua
+variabel atau lebih. Linear regression dimasukkan ke dalam klasifikasi
+supervised learning.</p>
 <p>Dalam Algoritma Linear Regression terdapat 2 Model yaitu, Regresi
 linear sederhana (Simple Linear Regression) dan Regresi linear berganda
 (Multiple Linear Regression).</p>
-<p>Regresi linear sederhana</p>
+<div id="regresi-linear-sederhana-simple-linear-regression" class="section level2">
+<h2>Regresi linear sederhana (Simple linear regression)</h2>
 <p>Regresi linear sederhana merupakan pemodelan regresi berdasarkan 1
-variabel prediktor. Persamaan regresi linear sederhana y^=β0+β1∗x1</p>
-<p>Regresi linear berganda (Multiple linear regression)</p>
+variabel prediktor.</p>
+<p>Persamaan regresi linear sederhana</p>
+<p>y^=β0+β1∗x1</p>
+<p>Data set linear sederhana</p>
+<pre class="r"><code>Y &lt;- c (31,32,33,34,35,36,37,38, 39, 40, 41, 43)
+X &lt;- c (46, 45, 49, 58, 44, 63, 47, 61, 53, 53, 42, 68)</code></pre>
+<div id="regresi-linear-berganda-multiple-linear-regression" class="section level3">
+<h3>Regresi linear berganda (Multiple linear regression)</h3>
 <p>Regresi linear berganda adalah hubungan antara satu variabel dependen
 dengan dua atau lebih variabel independen. Tujuan umum dari regresi
 linear berganda adalah untuk mempelajari lebih lanjut tentang hubungan
 antara beberapa variabel independen (prediktor) dan variabel dependen
 (kriteria).</p>
+<p>Data set linear berganda</p>
+<pre class="r"><code>Y &lt;- c (43, 26, 39, 37, 33, 54, 27, 38, 36, 55, 44)
+X1 &lt;- c (66, 45, 47, 48, 57, 43, 65, 76, 61, 42, 67)
+X2 &lt;- c (8, 9, 32, 54, 22, 15, 15, 17, 6, 9, 11)</code></pre>
+</div>
+</div>
 </div>
 <div id="tahapan-algoritma-linear-regression" class="section level1">
 <h1>Tahapan Algoritma Linear Regression</h1>
@@ -2829,7 +2843,8 @@ antara beberapa variabel independen (prediktor) dan variabel dependen
 </div>
 <p>Data mtcars terdiri dari 32 observasi/data dan 11 variabel/kolom yang
 bertipe numerik.</p>
-<p>Memahami Cross Validation dalam Machine Learning</p>
+<div id="memahami-cross-validation-dalam-machine-learning" class="section level3">
+<h3>Memahami Cross Validation dalam Machine Learning</h3>
 <p>Sebelum kita menerapkan metode machine learning, penting untuk
 membagi dataset yang dimiliki menjadi minimal dua kelompok: 1. data
 pelatihan (train set) 60-75% 2. data uji (test set) 25-40%. Pembagian
@@ -2937,6 +2952,7 @@ dengan hasil prediksi dari model yang telah kita buat sebelumnya</p>
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["wt"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["mpg"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["pred"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"2.875","2":"21.0","3":"22.068598","_rn_":"Mazda RX4 Wag"},{"1":"3.460","2":"18.1","3":"18.767014","_rn_":"Valiant"},{"1":"4.070","2":"16.4","3":"15.324337","_rn_":"Merc 450SE"},{"1":"3.730","2":"17.3","3":"17.243206","_rn_":"Merc 450SL"},{"1":"5.424","2":"10.4","3":"7.682721","_rn_":"Lincoln Continental"},{"1":"2.465","2":"21.5","3":"24.382529","_rn_":"Toyota Corona"},{"1":"3.840","2":"13.3","3":"16.622395","_rn_":"Camaro Z28"},{"1":"3.845","2":"19.2","3":"16.594177","_rn_":"Pontiac Firebird"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
+</div>
 </div>
 </div>
 </div>

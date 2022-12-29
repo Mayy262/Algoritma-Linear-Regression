@@ -22,23 +22,36 @@ text-align: justify}
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-# Algoritma Linear Regression 
+# Algoritma Linear Regression
 Machine learning merupakan ilmu yang mencakup bidang statistik, kecerdasan buatan, dan ilmu komputer. Machine learning dikenal juga sebagai analitik prediktif atau pembelajaran statistik (Muller and Guido 2017) - Supervised learning - unsupervised learning - semi-supervised learning - reinforement learning.
 
-Regresi merupakan machine learning kategori supervised learning dengan target data berupa data numerik. Regresi banyak digunakan dalam berbagai area, seperti pendidikan, hukum, industri, bisnis, ramalan keuangan, pemodelan keuangan, perencanaan pasar, dan analisis tren. Linear regression merupakan salah satu metode yang biasanya digunakan untuk melakukan prediksi (menggunakan garis lurus) sehingga bisa dilihat dan bisa menggambarkan hubungan antara dua variabel atau lebih. Linear regression dimasukkan ke dalam klasifikasi supervised learning.
+Regresi merupakan machine learning kategori supervised learning dengan target data berupa data numerik. Regresi banyak digunakan dalam berbagai area, seperti pendidikan, hukum, industri, bisnis, ramalan keuangan, pemodelan keuangan, perencanaan pasar, dan analisis tren (Mike Capple,2019). Linear regression merupakan salah satu metode yang biasanya digunakan untuk melakukan prediksi (menggunakan garis lurus) sehingga bisa dilihat dan bisa menggambarkan hubungan antara dua variabel atau lebih. Linear regression dimasukkan ke dalam klasifikasi supervised learning.
 
 Dalam Algoritma Linear Regression terdapat 2 Model yaitu, Regresi linear sederhana (Simple Linear Regression) dan Regresi linear berganda (Multiple Linear Regression).
 
-Regresi linear sederhana
+## Regresi linear sederhana (Simple linear regression)
 
 Regresi linear sederhana merupakan pemodelan regresi berdasarkan 1 variabel prediktor.
-Persamaan regresi linear sederhana
+
+Persamaan regresi linear sederhana 
+
 y^=β0+β1∗x1
 
-Regresi linear berganda (Multiple linear regression) 
+Data set linear sederhana
+```{r}
+Y <- c (31,32,33,34,35,36,37,38, 39, 40, 41, 43)
+X <- c (46, 45, 49, 58, 44, 63, 47, 61, 53, 53, 42, 68)
+```
+### Regresi linear berganda (Multiple linear regression) 
 
 Regresi linear berganda adalah hubungan antara satu variabel dependen dengan dua atau lebih variabel independen. Tujuan umum dari regresi linear berganda adalah untuk mempelajari lebih lanjut tentang hubungan antara beberapa variabel independen (prediktor) dan variabel dependen (kriteria). 
 
+Data set linear berganda
+```{r}
+Y <- c (43, 26, 39, 37, 33, 54, 27, 38, 36, 55, 44)
+X1 <- c (66, 45, 47, 48, 57, 43, 65, 76, 61, 42, 67)
+X2 <- c (8, 9, 32, 54, 22, 15, 15, 17, 6, 9, 11)
+```
 
 # Tahapan Algoritma Linear Regression
 
@@ -49,7 +62,7 @@ head(mtcars)
 ```
 Data mtcars terdiri dari 32 observasi/data dan 11 variabel/kolom yang bertipe numerik.
 
-Memahami Cross Validation dalam Machine Learning
+### Memahami Cross Validation dalam Machine Learning
 
 Sebelum kita menerapkan metode machine learning, penting untuk membagi dataset yang dimiliki menjadi minimal dua kelompok: 
 1. data pelatihan (train set) 60-75% 
