@@ -25,7 +25,8 @@ knitr::opts_chunk$set(echo = TRUE)
 # Algoritma Linear Regression
 Machine learning merupakan ilmu yang mencakup bidang statistik, kecerdasan buatan, dan ilmu komputer. Machine learning dikenal juga sebagai analitik prediktif atau pembelajaran statistik (Muller and Guido 2017) - Supervised learning - unsupervised learning - semi-supervised learning - reinforement learning.
 
-Regresi merupakan machine learning kategori supervised learning dengan target data berupa data numerik. Regresi banyak digunakan dalam berbagai area, seperti pendidikan, hukum, industri, bisnis, ramalan keuangan, pemodelan keuangan, perencanaan pasar, dan analisis tren (Mike Capple,2019). Linear regression merupakan salah satu metode yang biasanya digunakan untuk melakukan prediksi (menggunakan garis lurus) sehingga bisa dilihat dan bisa menggambarkan hubungan antara dua variabel atau lebih. Linear regression dimasukkan ke dalam klasifikasi supervised learning.
+Regresi merupakan machine learning kategori supervised learning dengan target data berupa data numerik. Regresi banyak digunakan dalam berbagai area, seperti pendidikan, hukum, industri, bisnis, ramalan keuangan, pemodelan keuangan, perencanaan pasar, dan analisis tren (Mike Chapple, 2019). 
+Linear regression merupakan salah satu metode yang biasanya digunakan untuk melakukan prediksi (menggunakan garis lurus) sehingga bisa dilihat dan bisa menggambarkan hubungan antara dua variabel atau lebih. Linear regression dimasukkan ke dalam klasifikasi supervised learning.
 
 Dalam Algoritma Linear Regression terdapat 2 Model yaitu, Regresi linear sederhana (Simple Linear Regression) dan Regresi linear berganda (Multiple Linear Regression).
 
@@ -35,18 +36,17 @@ Regresi linear sederhana merupakan pemodelan regresi berdasarkan 1 variabel pred
 
 Persamaan regresi linear sederhana 
 
-y^=β0+β1∗x1
-
-Data set linear sederhana
+Contoh Data set linear sederhana
 ```{r}
 Y <- c (31,32,33,34,35,36,37,38, 39, 40, 41, 43)
 X <- c (46, 45, 49, 58, 44, 63, 47, 61, 53, 53, 42, 68)
 ```
 ### Regresi linear berganda (Multiple linear regression) 
 
-Regresi linear berganda adalah hubungan antara satu variabel dependen dengan dua atau lebih variabel independen. Tujuan umum dari regresi linear berganda adalah untuk mempelajari lebih lanjut tentang hubungan antara beberapa variabel independen (prediktor) dan variabel dependen (kriteria). 
+Regresi linear berganda adalah hubungan antara satu variabel dependen dengan dua atau lebih variabel independen. Tujuan umum dari regresi linear berganda adalah untuk mempelajari lebih lanjut tentang hubungan antara beberapa variabel independen (prediktor) dan variabel dependen (kriteria).
+Bentuk persamaan regresinya adalah :
 
-Data set linear berganda
+Contoh Data set linear berganda
 ```{r}
 Y <- c (43, 26, 39, 37, 33, 54, 27, 38, 36, 55, 44)
 X1 <- c (66, 45, 47, 48, 57, 43, 65, 76, 61, 42, 67)
@@ -54,8 +54,12 @@ X2 <- c (8, 9, 32, 54, 22, 15, 15, 17, 6, 9, 11)
 ```
 
 # Tahapan Algoritma Linear Regression
+1. Menyiapkan data
+2. 
 
 # Eksperimen Algoritma Linear Regression
+Pada kasus kali ini, kita akan membahas regresi linear sederhana dan data yang digunakan yaitu data mtcars, yang terdiri dari konsumsi bahan bakar dan 10 aspek desain dan kinerja mobil untuk 32 jenis mobil (model 1973-1974).
+
 ## Library
 ```{r}
 head(mtcars)
@@ -64,9 +68,12 @@ Data mtcars terdiri dari 32 observasi/data dan 11 variabel/kolom yang bertipe nu
 
 ### Memahami Cross Validation dalam Machine Learning
 
-Sebelum kita menerapkan metode machine learning, penting untuk membagi dataset yang dimiliki menjadi minimal dua kelompok: 
-1. data pelatihan (train set) 60-75% 
-2. data uji (test set) 25-40%.
+Sebelum kita menerapkan metode machine learning, penting untuk membagi dataset yang dimiliki menjadi minimal dua kelompok:
+
+1. Data pelatihan (train set) 60-75% 
+
+2. Data uji (test set) 25-40%.
+
 Pembagian data tersebut disebut sebagai cross validation. Data train/data latih merupakan data yang digunakan untuk melatih model/mesin agar algoritme bisa mempelajari pola yang ada untuk memprediksi data yang belum pernah ia lihat. Data test/data uji merupakan data yang digunakan untuk melihat bagaimana kinerja model pada data baru atau digunakan sebagai data yang akan diprediksi, di mana nantinya kita akan membandingkan hasil prediksi dengan nilai sesungguhnya pada data test Kali ini, kita akan mensample secara random index pada data mtcars. 75% data akan dijadikan sebagai data train, dan 25% data akan dijadikan sebagai data test. Cara melakukannya dijelaskan:
 ```{r}
 set.seed(123)
@@ -88,6 +95,7 @@ Berikut visualisasi dari sebaran data dengan model regresi yang dibuat (garis be
 plot(train$wt, train$mpg)
 abline(model_simple, col = "red")
 ```
+
 baris pertama, kita membuat sebuah plot dengan sumbu x adalah variabel wt dari data train, sedangkan sumbu y adalah variabel mpg dari data train. Pada baris kedua, kita membaut sebuah line dengan warna merah dari model_simple yang telah dibuat sebelumnya
 
 Kemudian, untuk melihat performa model, kita bisa cek dengan fungsi summary().
@@ -111,6 +119,16 @@ cbind(test, pred) %>%
   select(wt, mpg, pred)
 ```
 
+#### Evaluasi Model
+
+Untuk mengevaluasi kasus diatas kita perlu mencari eror dari data yang kita uji, dimana kita akan mencari RMSE nya. 
+```{r}
+library(MLmetrics)
+```
+```{r}
+RMSE (pred, test$mpg)
+```
+Jadi hasil output di atas, dapat kita simpulkan bahwa nilai RMSE yang dihasilkan sebesar 2.12921, dimana rata-rata nilai prediksi melenceng sebesar 2.12921 dari nilai aktualnya.
 
 # Referensi
 
