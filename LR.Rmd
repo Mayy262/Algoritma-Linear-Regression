@@ -32,7 +32,10 @@ Dalam Algoritma Linear Regression terdapat 2 Model yaitu, Regresi linear sederha
 
 ## Regresi linear sederhana (Simple linear regression)
 
-Regresi linear sederhana merupakan pemodelan regresi berdasarkan 1 variabel prediktor.
+Regresi linear sederhana adalah hubungan antara satu variabel dependen dengan satu variabel independent. Regresi linear sederhana juga digunakan untuk menguji sejauh mana hubungan sebab akibat antara variabel faktor penyebab (x) terhadap variabel akibat (y).
+Faktor penyebab biasanya dilambangkan x (predictor), sedangkan variabel akibat dilambangkan y (response). 
+Tujuan regresi linear sederhana adalah untuk mencari persamaan garis lurus yang sedekat mungkin dengan semua nilai yang ada, sehingga persamaan garis tersebut menjadi benar sebagai representasi dan bertujuan mengecek apakah ada hubungan yang signifikan atara variabel atau respons yang ada.
+
 
 Persamaan regresi linear sederhana 
 
@@ -55,7 +58,9 @@ X2 <- c (8, 9, 32, 54, 22, 15, 15, 17, 6, 9, 11)
 
 # Tahapan Algoritma Linear Regression
 1. Menyiapkan data
-2. 
+2. Memprediksi pemodelan Machine Learning
+3. Membandingkan hasil prediksi dengan data aktual
+4. Evaluasi model
 
 # Eksperimen Algoritma Linear Regression
 Pada kasus kali ini, kita akan membahas regresi linear sederhana dan data yang digunakan yaitu data mtcars, yang terdiri dari konsumsi bahan bakar dan 10 aspek desain dan kinerja mobil untuk 32 jenis mobil (model 1973-1974).
@@ -74,7 +79,7 @@ Sebelum kita menerapkan metode machine learning, penting untuk membagi dataset y
 
 2. Data uji (test set) 25-40%.
 
-Pembagian data tersebut disebut sebagai cross validation. Data train/data latih merupakan data yang digunakan untuk melatih model/mesin agar algoritme bisa mempelajari pola yang ada untuk memprediksi data yang belum pernah ia lihat. Data test/data uji merupakan data yang digunakan untuk melihat bagaimana kinerja model pada data baru atau digunakan sebagai data yang akan diprediksi, di mana nantinya kita akan membandingkan hasil prediksi dengan nilai sesungguhnya pada data test Kali ini, kita akan mensample secara random index pada data mtcars. 75% data akan dijadikan sebagai data train, dan 25% data akan dijadikan sebagai data test. Cara melakukannya dijelaskan:
+Pembagian data tersebut disebut sebagai cross validation. Data test/data uji merupakan data yang digunakan untuk melihat bagaimana kinerja model pada data baru atau digunakan sebagai data yang akan diprediksi, di mana nantinya kita akan membandingkan hasil prediksi dengan nilai sesungguhnya pada data test Kali ini, kita akan mensample secara random index pada data mtcars. 75% data akan dijadikan sebagai data train, dan 25% data akan dijadikan sebagai data test. 
 ```{r}
 set.seed(123)
 idx <- sample(nrow(mtcars),nrow(mtcars)*0.75)
@@ -86,7 +91,7 @@ contoh data train dan data test yang telah kita bagi
 head(train,3)
 head(test,3)
 ```
-Setelah data dibagi menjadi data train dan data test, hal selanjutnya yang dilakukan adalah membuat pemodelan machine learning. Untuk menambah pemahaman, kita akan membuat suatu studi kasus.Dari studi kasus tersebut, Anda ingin mencari jenis mobil mana yang paling irit bensinnya, sehingga target variabelnya adalah mpg (Mile per Gallon), artinya semakin besar mpg, maka semakin irit mobil tersebut. Untuk memprediksi target variabel mpg tersebut, Anda menggunakan satu prediktor, yaitu variabel wt. Untuk membuat model regresi linear sederhana pada R, dapat dilakukan dengan:
+Setelah data dibagi menjadi data train dan data test, selanjutnya membuat pemodelan machine learning.Dari studi kasus diatas, kita ingin mencari jenis mobil mana yang paling irit bensinnya, sehingga target variabelnya adalah mpg (Mile per Gallon), artinya semakin besar mpg, maka semakin irit mobil tersebut. Untuk memprediksi target variabel mpg tersebut, Anda menggunakan satu prediktor, yaitu variabel wt. Untuk membuat model regresi linear sederhana pada R
 ```{r}
 model_simple <- lm(formula = mpg~wt, data = train)
 ```
@@ -96,17 +101,15 @@ plot(train$wt, train$mpg)
 abline(model_simple, col = "red")
 ```
 
-baris pertama, kita membuat sebuah plot dengan sumbu x adalah variabel wt dari data train, sedangkan sumbu y adalah variabel mpg dari data train. Pada baris kedua, kita membaut sebuah line dengan warna merah dari model_simple yang telah dibuat sebelumnya
-
 Kemudian, untuk melihat performa model, kita bisa cek dengan fungsi summary().
 ```{r}
 summary(model_simple)
 ```
 Pada summary dari model yang sudah kita buat, kita akan fokus pada suatu model evaluasi pada regresi, yakni Multiple R-Squared. Pada summary di atas, kita dapatkan nilai multiple r-squared 0.7379, artinya berat mobil (variabel wt) mampu berpengaruh 73% terhadap iritnya bensin (variabel mpg).
 
-Pada bagian koefisien, nilai estimasi untuk intercept adalah 38.2943. Nilai ini adalah nilai β_0 pada formulasi. Hal ini berarti jika nilai wt=0 maka nilai mpg adalah 38.2943. Selanjutnya masih pada bagian koefisien, untuk variabel wt nilai estimasi adalah -5.6437. Nilai ini merupakan nilai β_1. Artinya, untuk setiap kenaikan nilai wt sebanyak 1 maka nilai mpg akan menurun sebanyak 5.6437. 
+Pada bagian koefisien, nilai estimasi untuk intercept (β0) adalah 38.2943. Hal ini berarti jika nilai wt = 0 maka nilai mpg adalah 38.2943. Selanjutnya masih pada bagian koefisien, untuk variabel wt nilai estimasi (β1) adalah -5.6437. Artinya, untuk setiap kenaikan nilai wt sebanyak 1 maka nilai mpg akan menurun sebanyak 5.6437. 
 
-Dari model hasil training, kita bisa mencobakannya pada data test. Hal ini bisa dilakukan dengan menuliskan: Dalam hal ini, kita akan prediksi pemodelan machine learning kita ke data test yang merupakan partisi 25% dari data awal. Untuk melakukan prediksi, bisa digunakan fungsi predict(). Model_simple adalah model regresi linear sederhana yang kita ciptakan sedangan test adalah data test yang digunakan untuk mencobakan model
+Dalam hal ini, kita akan prediksi pemodelan machine learning kita ke data test yang merupakan partisi 25% dari data awal. Untuk melakukan prediksi, bisa digunakan fungsi predict(). 
 ```{r}
 pred <- predict(model_simple, test)
 ```
@@ -132,4 +135,7 @@ Jadi hasil output di atas, dapat kita simpulkan bahwa nilai RMSE yang dihasilkan
 
 # Referensi
 
+https://rpubs.com/delfitriani/851893
+
+Arhami M & Nasir M., 2020, Data Mining Algoritma dan Implementasi
 
