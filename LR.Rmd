@@ -75,31 +75,31 @@ data("marketing", package = "datarium")
 head(marketing)
 ```
 
-### Memahami Cross Validation dalam Machine Learning
+### Memprediksi Pemodelan dalam Machine Learning
 
-Sebelum kita menerapkan metode machine learning, penting untuk membagi dataset yang dimiliki menjadi minimal dua kelompok:
+Sebelum kita menerapkan metode machine learning, penting untuk membagi dataset jadi minimal dua kelompok:
 
 1. Data pelatihan (train set) 60-75% 
 
 2. Data uji (test set) 25-40%.
 
-Pembagian data tersebut disebut sebagai cross validation. Data test/data uji merupakan data yang digunakan untuk melihat bagaimana kinerja model pada data baru atau digunakan sebagai data yang akan diprediksi, di mana nantinya kita akan membandingkan hasil prediksi dengan nilai sesungguhnya pada data test Kali ini, kita akan mensample secara random index pada data mtcars. 75% data akan dijadikan sebagai data train, dan 25% data akan dijadikan sebagai data test. 
+Pembagian data tersebut disebut sebagai cross validation. Data test/data uji merupakan data yang digunakan untuk melihat bagaimana kinerja model pada data baru atau digunakan sebagai data yang akan diprediksi, di mana nantinya kita akan membandingkan hasil prediksi dengan nilai sesungguhnya, kita akan mensample secara random index pada data marketing. 75% data akan dijadikan sebagai data train, dan 25% data akan dijadikan sebagai data test. 
 ```{r}
 set.seed(123)
 idx <- sample(nrow(marketing),nrow(marketing)*0.75)
 train <- marketing[idx,]
 test <- marketing[-idx,]
 ```
-contoh data train dan data test yang telah kita bagi
+Data train dan data test yang telah kita bagi
 ```{r}
 head(train,3)
 head(test,3)
 ```
-Setelah data dibagi menjadi data train dan data test, selanjutnya membuat pemodelan machine learning.Dari studi kasus diatas, kita ingin mencari jenis mobil mana yang paling irit bensinnya, sehingga target variabelnya adalah mpg (Mile per Gallon), artinya semakin besar mpg, maka semakin irit mobil tersebut. Untuk memprediksi target variabel mpg tersebut, Anda menggunakan satu prediktor, yaitu variabel wt. Untuk membuat model regresi linear sederhana pada R
+Setelah data dibagi menjadi data train dan data test, selanjutnya membuat pemodelan machine learning.Dari studi kasus diatas, target variabelnya adalah Sales, Untuk memprediksi target variabel Sales tersebut, kita menggunakan satu prediktor, yaitu variabel Facebook. Untuk membuat model regresi linear sederhana pada R
 ```{r}
 model_simple <- lm(formula = sales~facebook, data = train)
 ```
-Berikut visualisasi dari sebaran data dengan model regresi yang dibuat (garis berwarna merah). Untuk membuat visualisasi dalam bentuk grafik, dapat mengikuti:
+Membuat visualisasi dalam bentuk grafik.
 ```{r}
 plot(train$facebook, train$sales)
 abline(model_simple, col = "red")
@@ -109,11 +109,11 @@ Kemudian, untuk melihat performa model, kita bisa cek dengan fungsi summary().
 ```{r}
 summary(model_simple)
 ```
-Pada summary dari model di atas, dihasilkan nilai multiple r-squared sebesar 0.7379, artinya berat mobil (variabel wt) mampu berpengaruh 73% terhadap iritnya bensin (variabel mpg).
+Pada summary dari model di atas, dihasilkan nilai multiple r-squared sebesar 0.3176.
 
-Pada bagian koefisien, nilai estimasi untuk intercept (β0) adalah 38.2943. Hal ini berarti jika nilai wt = 0 maka nilai mpg adalah 38.2943. Selanjutnya masih pada bagian koefisien, untuk variabel wt nilai estimasi (β1) adalah -5.6437. Artinya, untuk setiap kenaikan nilai wt sebanyak 1 maka nilai mpg akan menurun sebanyak 5.6437. 
+Pada bagian koefisien, nilai estimasi untuk intercept (β0) adalah  11.4327. Selanjutnya masih pada bagian koefisien, untuk variabel Facebook nilai estimasi (β1) adalah  0.1942. 
 
-Dalam hal ini, kita akan prediksi pemodelan machine learning kita ke data test yang merupakan partisi 25% dari data awal. Untuk melakukan prediksi, bisa digunakan fungsi predict(). 
+Uji prediksi bisa menggunakan fungsi predict(). 
 ```{r}
 pred <- predict(model_simple, test)
 ```
@@ -133,9 +133,9 @@ Untuk mengevaluasi kasus diatas kita perlu mencari eror dari data yang kita uji,
 library(MLmetrics)
 ```
 ```{r}
-RMSE (pred, test$mpg)
+RMSE (pred, test$sales)
 ```
-Jadi hasil output di atas, dapat kita simpulkan bahwa nilai RMSE yang dihasilkan sebesar 2.12921, dimana rata-rata nilai prediksi melenceng sebesar 2.12921 dari nilai aktualnya.
+Jadi hasil output di atas, dapat kita simpulkan bahwa nilai RMSE yang dihasilkan sebesar 5.120427, dimana rata-rata nilai prediksi melenceng sebesar 5.120427 dari nilai aktualnya.
 
 # Referensi
 
