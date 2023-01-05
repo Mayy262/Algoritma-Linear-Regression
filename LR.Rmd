@@ -63,13 +63,17 @@ X2 <- c (8, 9, 32, 54, 22, 15, 15, 17, 6, 9, 11)
 4. Evaluasi model
 
 # Eksperimen Algoritma Linear Regression
-Pada kasus kali ini, kita akan membahas regresi linear sederhana dan data yang digunakan yaitu data mtcars, yang terdiri dari konsumsi bahan bakar dan 10 aspek desain dan kinerja mobil untuk 32 jenis mobil (model 1973-1974).
+Pada kasus kali ini, kita akan membahas regresi linear berganda menggunakan data Marketing.
 
 ## Library
 ```{r}
-head(mtcars)
+library(datarium)
 ```
-Data mtcars terdiri dari 32 observasi/data dan 11 variabel/kolom yang bertipe numerik.
+
+```{r}
+data("marketing", package = "datarium")
+head(marketing)
+```
 
 ### Memahami Cross Validation dalam Machine Learning
 
@@ -82,9 +86,9 @@ Sebelum kita menerapkan metode machine learning, penting untuk membagi dataset y
 Pembagian data tersebut disebut sebagai cross validation. Data test/data uji merupakan data yang digunakan untuk melihat bagaimana kinerja model pada data baru atau digunakan sebagai data yang akan diprediksi, di mana nantinya kita akan membandingkan hasil prediksi dengan nilai sesungguhnya pada data test Kali ini, kita akan mensample secara random index pada data mtcars. 75% data akan dijadikan sebagai data train, dan 25% data akan dijadikan sebagai data test. 
 ```{r}
 set.seed(123)
-idx <- sample(nrow(mtcars),nrow(mtcars)*0.75)
-train <- mtcars[idx,]
-test <- mtcars[-idx,]
+idx <- sample(nrow(marketing),nrow(marketing)*0.75)
+train <- marketing[idx,]
+test <- marketing[-idx,]
 ```
 contoh data train dan data test yang telah kita bagi
 ```{r}
@@ -93,11 +97,11 @@ head(test,3)
 ```
 Setelah data dibagi menjadi data train dan data test, selanjutnya membuat pemodelan machine learning.Dari studi kasus diatas, kita ingin mencari jenis mobil mana yang paling irit bensinnya, sehingga target variabelnya adalah mpg (Mile per Gallon), artinya semakin besar mpg, maka semakin irit mobil tersebut. Untuk memprediksi target variabel mpg tersebut, Anda menggunakan satu prediktor, yaitu variabel wt. Untuk membuat model regresi linear sederhana pada R
 ```{r}
-model_simple <- lm(formula = mpg~wt, data = train)
+model_simple <- lm(formula = sales~facebook, data = train)
 ```
 Berikut visualisasi dari sebaran data dengan model regresi yang dibuat (garis berwarna merah). Untuk membuat visualisasi dalam bentuk grafik, dapat mengikuti:
 ```{r}
-plot(train$wt, train$mpg)
+plot(train$facebook, train$sales)
 abline(model_simple, col = "red")
 ```
 
@@ -105,7 +109,7 @@ Kemudian, untuk melihat performa model, kita bisa cek dengan fungsi summary().
 ```{r}
 summary(model_simple)
 ```
-Pada summary dari model yang sudah kita buat, kita akan fokus pada suatu model evaluasi pada regresi, yakni Multiple R-Squared. Pada summary di atas, kita dapatkan nilai multiple r-squared 0.7379, artinya berat mobil (variabel wt) mampu berpengaruh 73% terhadap iritnya bensin (variabel mpg).
+Pada summary dari model di atas, dihasilkan nilai multiple r-squared sebesar 0.7379, artinya berat mobil (variabel wt) mampu berpengaruh 73% terhadap iritnya bensin (variabel mpg).
 
 Pada bagian koefisien, nilai estimasi untuk intercept (β0) adalah 38.2943. Hal ini berarti jika nilai wt = 0 maka nilai mpg adalah 38.2943. Selanjutnya masih pada bagian koefisien, untuk variabel wt nilai estimasi (β1) adalah -5.6437. Artinya, untuk setiap kenaikan nilai wt sebanyak 1 maka nilai mpg akan menurun sebanyak 5.6437. 
 
@@ -119,7 +123,7 @@ library(dplyr)
 ```
 ```{r}
 cbind(test, pred) %>%
-  select(wt, mpg, pred)
+  select(facebook, sales, pred)
 ```
 
 #### Evaluasi Model
