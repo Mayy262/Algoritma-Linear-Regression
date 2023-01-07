@@ -11,7 +11,7 @@
 
 <meta name="author" content="Sifa’ul Kumairoh-Institut Teknologi Statistika dan Bisnis Muhammadiyah" />
 
-<meta name="date" content="2023-01-05" />
+<meta name="date" content="2023-01-07" />
 
 <title>Algoritma Linear Regression dengan R</title>
 
@@ -2777,7 +2777,7 @@ border-radius: 0px;
 <h1 class="title toc-ignore">Algoritma Linear Regression dengan R</h1>
 <h4 class="author">Sifa’ul Kumairoh-Institut Teknologi Statistika dan
 Bisnis Muhammadiyah</h4>
-<h4 class="date">2023-01-05</h4>
+<h4 class="date">2023-01-07</h4>
 
 </div>
 
@@ -2797,11 +2797,10 @@ learning - reinforement learning.</p>
 dengan target data berupa data numerik. Regresi banyak digunakan dalam
 berbagai area, seperti pendidikan, hukum, industri, bisnis, ramalan
 keuangan, pemodelan keuangan, perencanaan pasar, dan analisis tren (Mike
-Chapple, 2019). Linear regression merupakan salah satu metode yang
-biasanya digunakan untuk melakukan prediksi (menggunakan garis lurus)
-sehingga bisa dilihat dan bisa menggambarkan hubungan antara dua
-variabel atau lebih. Linear regression dimasukkan ke dalam klasifikasi
-supervised learning.</p>
+Chapple, 2019). Regresi Linear merupakan salah satu metode yang biasanya
+digunakan untuk melakukan prediksi (menggunakan garis lurus) sehingga
+bisa dilihat dan bisa menggambarkan hubungan antara dua variabel atau
+lebih.</p>
 <p>Dalam Algoritma Linear Regression terdapat 2 Model yaitu, Regresi
 linear sederhana (Simple Linear Regression) dan Regresi linear berganda
 (Multiple Linear Regression).</p>
@@ -2812,11 +2811,12 @@ dependen dengan satu variabel independent. Regresi linear sederhana juga
 digunakan untuk menguji sejauh mana hubungan sebab akibat antara
 variabel faktor penyebab (x) terhadap variabel akibat (y). Faktor
 penyebab biasanya dilambangkan x (predictor), sedangkan variabel akibat
-dilambangkan y (response). Tujuan regresi linear sederhana adalah untuk
-mencari persamaan garis lurus yang sedekat mungkin dengan semua nilai
-yang ada, sehingga persamaan garis tersebut menjadi benar sebagai
-representasi dan bertujuan mengecek apakah ada hubungan yang signifikan
-atara variabel atau respons yang ada.</p>
+dilambangkan y (response).</p>
+<p>Tujuan regresi linear sederhana adalah untuk mencari persamaan garis
+lurus yang sedekat mungkin dengan semua nilai yang ada, sehingga
+persamaan garis tersebut menjadi benar sebagai representasi dan
+bertujuan mengecek apakah ada hubungan yang signifikan atara variabel
+atau respons yang ada.</p>
 <p>Persamaan regresi linear sederhana</p>
 <p>Contoh Data set linear sederhana</p>
 <pre class="r"><code>Y &lt;- c (31,32,33,34,35,36,37,38, 39, 40, 41, 43)
@@ -2847,7 +2847,9 @@ X2 &lt;- c (8, 9, 32, 54, 22, 15, 15, 17, 6, 9, 11)</code></pre>
 <div id="eksperimen-algoritma-linear-regression" class="section level1">
 <h1>Eksperimen Algoritma Linear Regression</h1>
 <p>Pada kasus kali ini, kita akan membahas regresi linear berganda
-menggunakan data Marketing.</p>
+menggunakan data Marketing. Data ini berisi jumlah uang yang dikeluarkan
+untuk iklan, pada tiga media pengiklan (youtube, facebook, dan
+newspaper) serta sales.</p>
 <div id="library" class="section level2">
 <h2>Library</h2>
 <pre class="r"><code>library(datarium)</code></pre>
@@ -2860,19 +2862,19 @@ head(marketing)</code></pre>
 </div>
 <div id="memprediksi-pemodelan-dalam-machine-learning" class="section level3">
 <h3>Memprediksi Pemodelan dalam Machine Learning</h3>
-<p>Sebelum kita menerapkan metode machine learning, penting untuk
-membagi dataset jadi minimal dua kelompok:</p>
+<p>Sebelum kita menerapkan metode machine learning, bagi dataset jadi
+dua kelompok:</p>
 <ol style="list-style-type: decimal">
 <li><p>Data pelatihan (train set) 60-75%</p></li>
 <li><p>Data uji (test set) 25-40%.</p></li>
 </ol>
-<p>Pembagian data tersebut disebut sebagai cross validation. Data
-test/data uji merupakan data yang digunakan untuk melihat bagaimana
-kinerja model pada data baru atau digunakan sebagai data yang akan
-diprediksi, di mana nantinya kita akan membandingkan hasil prediksi
-dengan nilai sesungguhnya, kita akan mensample secara random index pada
-data marketing. 75% data akan dijadikan sebagai data train, dan 25% data
-akan dijadikan sebagai data test.</p>
+<p>Pembagian data tersebut disebut sebagai cross validation. Data test
+merupakan data yang digunakan untuk melihat bagaimana kinerja model pada
+data baru atau digunakan sebagai data yang akan diprediksi, di mana
+nantinya kita akan membandingkan hasil prediksi dengan nilai
+sesungguhnya, kita akan mensample secara random index pada data
+marketing. 75% data akan dijadikan sebagai data train, dan 25% data akan
+dijadikan sebagai data test.</p>
 <pre class="r"><code>set.seed(123)
 idx &lt;- sample(nrow(marketing),nrow(marketing)*0.75)
 train &lt;- marketing[idx,]
@@ -2890,11 +2892,11 @@ test &lt;- marketing[-idx,]</code></pre>
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["youtube"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["facebook"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["newspaper"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["sales"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"53.40","2":"47.16","3":"54.12","4":"12.48","_rn_":"2"},{"1":"239.76","2":"3.12","3":"25.44","4":"12.72","_rn_":"10"},{"1":"244.92","2":"39.48","3":"55.20","4":"22.80","_rn_":"15"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<p>Setelah data dibagi menjadi data train dan data test, selanjutnya
-membuat pemodelan machine learning.Dari studi kasus diatas, target
-variabelnya adalah Sales, Untuk memprediksi target variabel Sales
-tersebut, kita menggunakan satu prediktor, yaitu variabel Facebook.
-Untuk membuat model regresi linear sederhana pada R</p>
+<p>Dari studi kasus diatas, kita akan mencari tahu apakah jumlah uang
+yang dikeluarkan pada iklan facebook berpengaruh terhadap penjualan
+(sales). Target variabelnya adalah Sales, dan untuk memprediksi target
+variabelnya kita menggunakan prediktor, yaitu Facebook.</p>
+<p>Membuat model regresi linear sederhana pada R</p>
 <pre class="r"><code>model_simple &lt;- lm(formula = sales~facebook, data = train)</code></pre>
 <p>Membuat visualisasi dalam bentuk grafik.</p>
 <pre class="r"><code>plot(train$facebook, train$sales)
@@ -2926,6 +2928,7 @@ sebesar 0.3176.</p>
 <p>Pada bagian koefisien, nilai estimasi untuk intercept (β0) adalah
 11.4327. Selanjutnya masih pada bagian koefisien, untuk variabel
 Facebook nilai estimasi (β1) adalah 0.1942.</p>
+<p>Sehingga model regresinya :</p>
 <p>Uji prediksi bisa menggunakan fungsi predict().</p>
 <pre class="r"><code>pred &lt;- predict(model_simple, test)</code></pre>
 <p>Setelah dilakukan prediksi, kita bisa membandingkan data aktual
@@ -2968,6 +2971,7 @@ sebesar 5.120427 dari nilai aktualnya.</p>
 <div id="referensi" class="section level1">
 <h1>Referensi</h1>
 <p><a href="https://rpubs.com/delfitriani/851893" class="uri">https://rpubs.com/delfitriani/851893</a></p>
+<p><a href="https://jagostat.com/R/regresi-linear-berganda-dalam-pemrograman-r" class="uri">https://jagostat.com/R/regresi-linear-berganda-dalam-pemrograman-r</a></p>
 <p>Arhami M &amp; Nasir M., 2020, Data Mining Algoritma dan
 Implementasi</p>
 </div>

@@ -26,7 +26,7 @@ knitr::opts_chunk$set(echo = TRUE)
 Machine learning merupakan ilmu yang mencakup bidang statistik, kecerdasan buatan, dan ilmu komputer. Machine learning dikenal juga sebagai analitik prediktif atau pembelajaran statistik (Muller and Guido 2017) - Supervised learning - unsupervised learning - semi-supervised learning - reinforement learning.
 
 Regresi merupakan machine learning kategori supervised learning dengan target data berupa data numerik. Regresi banyak digunakan dalam berbagai area, seperti pendidikan, hukum, industri, bisnis, ramalan keuangan, pemodelan keuangan, perencanaan pasar, dan analisis tren (Mike Chapple, 2019). 
-Linear regression merupakan salah satu metode yang biasanya digunakan untuk melakukan prediksi (menggunakan garis lurus) sehingga bisa dilihat dan bisa menggambarkan hubungan antara dua variabel atau lebih. Linear regression dimasukkan ke dalam klasifikasi supervised learning.
+Regresi Linear merupakan salah satu metode yang biasanya digunakan untuk melakukan prediksi (menggunakan garis lurus) sehingga bisa dilihat dan bisa menggambarkan hubungan antara dua variabel atau lebih.
 
 Dalam Algoritma Linear Regression terdapat 2 Model yaitu, Regresi linear sederhana (Simple Linear Regression) dan Regresi linear berganda (Multiple Linear Regression).
 
@@ -34,6 +34,7 @@ Dalam Algoritma Linear Regression terdapat 2 Model yaitu, Regresi linear sederha
 
 Regresi linear sederhana adalah hubungan antara satu variabel dependen dengan satu variabel independent. Regresi linear sederhana juga digunakan untuk menguji sejauh mana hubungan sebab akibat antara variabel faktor penyebab (x) terhadap variabel akibat (y).
 Faktor penyebab biasanya dilambangkan x (predictor), sedangkan variabel akibat dilambangkan y (response). 
+
 Tujuan regresi linear sederhana adalah untuk mencari persamaan garis lurus yang sedekat mungkin dengan semua nilai yang ada, sehingga persamaan garis tersebut menjadi benar sebagai representasi dan bertujuan mengecek apakah ada hubungan yang signifikan atara variabel atau respons yang ada.
 
 
@@ -63,7 +64,7 @@ X2 <- c (8, 9, 32, 54, 22, 15, 15, 17, 6, 9, 11)
 4. Evaluasi model
 
 # Eksperimen Algoritma Linear Regression
-Pada kasus kali ini, kita akan membahas regresi linear berganda menggunakan data Marketing.
+Pada kasus kali ini, kita akan membahas regresi linear berganda menggunakan data Marketing. Data ini berisi jumlah uang yang dikeluarkan untuk iklan, pada tiga media pengiklan (youtube, facebook, dan newspaper) serta sales.
 
 ## Library
 ```{r}
@@ -77,13 +78,15 @@ head(marketing)
 
 ### Memprediksi Pemodelan dalam Machine Learning
 
-Sebelum kita menerapkan metode machine learning, penting untuk membagi dataset jadi minimal dua kelompok:
+Sebelum kita menerapkan metode machine learning, bagi dataset jadi dua kelompok:
 
 1. Data pelatihan (train set) 60-75% 
 
 2. Data uji (test set) 25-40%.
 
-Pembagian data tersebut disebut sebagai cross validation. Data test/data uji merupakan data yang digunakan untuk melihat bagaimana kinerja model pada data baru atau digunakan sebagai data yang akan diprediksi, di mana nantinya kita akan membandingkan hasil prediksi dengan nilai sesungguhnya, kita akan mensample secara random index pada data marketing. 75% data akan dijadikan sebagai data train, dan 25% data akan dijadikan sebagai data test. 
+Pembagian data tersebut disebut sebagai cross validation. 
+Data test merupakan data yang digunakan untuk melihat bagaimana kinerja model pada data baru atau digunakan sebagai data yang akan diprediksi, di mana nantinya kita akan membandingkan hasil prediksi dengan nilai sesungguhnya, kita akan mensample secara random index pada data marketing. 
+75% data akan dijadikan sebagai data train, dan 25% data akan dijadikan sebagai data test. 
 ```{r}
 set.seed(123)
 idx <- sample(nrow(marketing),nrow(marketing)*0.75)
@@ -95,7 +98,9 @@ Data train dan data test yang telah kita bagi
 head(train,3)
 head(test,3)
 ```
-Setelah data dibagi menjadi data train dan data test, selanjutnya membuat pemodelan machine learning.Dari studi kasus diatas, target variabelnya adalah Sales, Untuk memprediksi target variabel Sales tersebut, kita menggunakan satu prediktor, yaitu variabel Facebook. Untuk membuat model regresi linear sederhana pada R
+Dari studi kasus diatas, kita akan mencari tahu apakah jumlah uang yang dikeluarkan pada iklan facebook berpengaruh terhadap penjualan (sales). Target variabelnya adalah Sales, dan untuk memprediksi target variabelnya kita menggunakan prediktor, yaitu Facebook. 
+
+Membuat model regresi linear sederhana pada R
 ```{r}
 model_simple <- lm(formula = sales~facebook, data = train)
 ```
@@ -112,6 +117,9 @@ summary(model_simple)
 Pada summary dari model di atas, dihasilkan nilai multiple r-squared sebesar 0.3176.
 
 Pada bagian koefisien, nilai estimasi untuk intercept (β0) adalah  11.4327. Selanjutnya masih pada bagian koefisien, untuk variabel Facebook nilai estimasi (β1) adalah  0.1942. 
+
+Sehingga model regresinya :
+
 
 Uji prediksi bisa menggunakan fungsi predict(). 
 ```{r}
@@ -140,6 +148,8 @@ Jadi hasil output di atas, dapat kita simpulkan bahwa nilai RMSE yang dihasilkan
 # Referensi
 
 https://rpubs.com/delfitriani/851893
+
+https://jagostat.com/R/regresi-linear-berganda-dalam-pemrograman-r
 
 Arhami M & Nasir M., 2020, Data Mining Algoritma dan Implementasi
 
