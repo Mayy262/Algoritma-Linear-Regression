@@ -119,8 +119,6 @@ Pada summary dari model di atas, dihasilkan nilai multiple r-squared sebesar 0.3
 Pada bagian koefisien, nilai estimasi untuk intercept (β0) adalah  11.4327. Selanjutnya masih pada bagian koefisien, untuk variabel Facebook nilai estimasi (β1) adalah  0.1942. 
 
 Sehingga model regresinya :
-
-
 Uji prediksi bisa menggunakan fungsi predict(). 
 ```{r}
 pred <- predict(model_simple, test)
