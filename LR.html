@@ -11,7 +11,7 @@
 
 <meta name="author" content="Sifa’ul Kumairoh-Institut Teknologi Statistika dan Bisnis Muhammadiyah" />
 
-<meta name="date" content="2023-01-07" />
+<meta name="date" content="2023-01-11" />
 
 <title>Algoritma Linear Regression dengan R</title>
 
@@ -2777,7 +2777,7 @@ border-radius: 0px;
 <h1 class="title toc-ignore">Algoritma Linear Regression dengan R</h1>
 <h4 class="author">Sifa’ul Kumairoh-Institut Teknologi Statistika dan
 Bisnis Muhammadiyah</h4>
-<h4 class="date">2023-01-07</h4>
+<h4 class="date">2023-01-11</h4>
 
 </div>
 
@@ -2817,7 +2817,8 @@ lurus yang sedekat mungkin dengan semua nilai yang ada, sehingga
 persamaan garis tersebut menjadi benar sebagai representasi dan
 bertujuan mengecek apakah ada hubungan yang signifikan atara variabel
 atau respons yang ada.</p>
-<p>Persamaan regresi linear sederhana</p>
+<p>Persamaan regresi linear sederhana :</p>
+<p>Y = β0 +β1.x1</p>
 <p>Contoh Data set linear sederhana</p>
 <pre class="r"><code>Y &lt;- c (31,32,33,34,35,36,37,38, 39, 40, 41, 43)
 X &lt;- c (46, 45, 49, 58, 44, 63, 47, 61, 53, 53, 42, 68)</code></pre>
@@ -2828,6 +2829,7 @@ dengan dua atau lebih variabel independen. Tujuan umum dari regresi
 linear berganda adalah untuk mempelajari lebih lanjut tentang hubungan
 antara beberapa variabel independen (prediktor) dan variabel dependen
 (kriteria). Bentuk persamaan regresinya adalah :</p>
+<p>Y = β0+β0x1+β2x2+…+βnxn</p>
 <p>Contoh Data set linear berganda</p>
 <pre class="r"><code>Y &lt;- c (43, 26, 39, 37, 33, 54, 27, 38, 36, 55, 44)
 X1 &lt;- c (66, 45, 47, 48, 57, 43, 65, 76, 61, 42, 67)
@@ -2928,8 +2930,9 @@ sebesar 0.3176.</p>
 <p>Pada bagian koefisien, nilai estimasi untuk intercept (β0) adalah
 11.4327. Selanjutnya masih pada bagian koefisien, untuk variabel
 Facebook nilai estimasi (β1) adalah 0.1942.</p>
-<p>Sehingga model regresinya : Uji prediksi bisa menggunakan fungsi
-predict().</p>
+<p>Sehingga model regresinya :</p>
+<p>Y = 11.4327 + 0.1942x1</p>
+<p>Uji prediksi bisa menggunakan fungsi predict().</p>
 <pre class="r"><code>pred &lt;- predict(model_simple, test)</code></pre>
 <p>Setelah dilakukan prediksi, kita bisa membandingkan data aktual
 dengan hasil prediksi dari model yang telah kita buat sebelumnya</p>
