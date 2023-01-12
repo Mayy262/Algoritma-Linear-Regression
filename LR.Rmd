@@ -70,6 +70,8 @@ X2 <- c (8, 9, 32, 54, 22, 15, 15, 17, 6, 9, 11)
 Pada kasus kali ini, kita akan membahas regresi linear berganda menggunakan data Marketing. Data ini berisi jumlah uang yang dikeluarkan untuk iklan, pada tiga media pengiklan (youtube, facebook, dan newspaper) serta sales.
 
 ## Library
+
+1. Menyiapkan data (Marketing)
 ```{r}
 library(datarium)
 ```
@@ -79,57 +81,60 @@ data("marketing", package = "datarium")
 head(marketing)
 ```
 
-### Memprediksi Pemodelan dalam Machine Learning
+2. Memprediksi Pemodelan dalam Machine Learning
 
-Sebelum kita menerapkan metode machine learning, bagi dataset jadi dua kelompok:
+   Bagi dataset menjadi  2 kelompok :
 
-1. Data pelatihan (train set) 60-75% 
+   1. Data training (60-75%) 
 
-2. Data uji (test set) 25-40%.
+   2. Data testing (25-40%)
 
-Pembagian data tersebut disebut sebagai cross validation. 
-Data test merupakan data yang digunakan untuk melihat bagaimana kinerja model pada data baru atau digunakan sebagai data yang akan diprediksi, di mana nantinya kita akan membandingkan hasil prediksi dengan nilai sesungguhnya, kita akan mensample secara random index pada data marketing. 
-75% data akan dijadikan sebagai data train, dan 25% data akan dijadikan sebagai data test. 
+  selanjutnya kita akan mensample secara random index pada data marketing (75% (Data
+  training), 25% (Data testing))
 ```{r}
 set.seed(123)
 idx <- sample(nrow(marketing),nrow(marketing)*0.75)
 train <- marketing[idx,]
 test <- marketing[-idx,]
 ```
-Data train dan data test yang telah kita bagi
+  Data train dan data test yang telah kita bagi
 ```{r}
 head(train,3)
 head(test,3)
 ```
-Dari studi kasus diatas, kita akan mencari tahu apakah jumlah uang yang dikeluarkan pada iklan facebook berpengaruh terhadap penjualan (sales). Target variabelnya adalah Sales, dan untuk memprediksi target variabelnya kita menggunakan prediktor, yaitu Facebook. 
+  Dari studi kasus diatas, kita akan mencari tahu apakah jumlah uang yang dikeluarkan
+  pada iklan facebook berpengaruh terhadap penjualan (sales). Target variabelnya adalah
+  Sales, dan untuk memprediksi target variabelnya kita menggunakan prediktor, yaitu
+  Facebook. 
 
-Membuat model regresi linear sederhana pada R
 ```{r}
 model_simple <- lm(formula = sales~facebook, data = train)
 ```
-Membuat visualisasi dalam bentuk grafik.
+
 ```{r}
 plot(train$facebook, train$sales)
-abline(model_simple, col = "red")
+abline(model_simple, col = "blue")
 ```
 
-Kemudian, untuk melihat performa model, kita bisa cek dengan fungsi summary().
 ```{r}
 summary(model_simple)
 ```
-Pada summary dari model di atas, dihasilkan nilai multiple r-squared sebesar 0.3176.
+  Hasil :
 
-Pada bagian koefisien, nilai estimasi untuk intercept (β0) adalah  11.4327. Selanjutnya masih pada bagian koefisien, untuk variabel Facebook nilai estimasi (β1) adalah  0.1942. 
+  Nilai multiple r-squared sebesar 0.3176.
 
-Sehingga model regresinya :
+  Nilai estimasi untuk intercept (β0) adalah  11.4327. 
 
-Y = 11.4327 + 0.1942x1
+  Nilai estimasi (β1) adalah  0.1942. 
 
-Uji prediksi bisa menggunakan fungsi predict(). 
+  Sehingga model regresinya :
+
+  Y = 11.4327 + 0.1942x1
+
 ```{r}
 pred <- predict(model_simple, test)
 ```
-Setelah dilakukan prediksi, kita bisa membandingkan data aktual dengan hasil prediksi dari model yang telah kita buat sebelumnya
+3. langkah selanjutnya bandingkan nilai aktual dengan hasil prediksi 
 ```{r}
 library(dplyr)
 ```
@@ -138,22 +143,27 @@ cbind(test, pred) %>%
   select(facebook, sales, pred)
 ```
 
-#### Evaluasi Model
+4. Evaluasi Model
 
-Untuk mengevaluasi kasus diatas kita perlu mencari eror dari data yang kita uji, dimana kita akan mencari RMSE nya. 
+  Untuk mengevaluasi kasus diatas kita perlu mencari eror dari data yang kita uji, dimana
+  kita akan mencari RMSE nya. 
 ```{r}
 library(MLmetrics)
 ```
 ```{r}
 RMSE (pred, test$sales)
 ```
-Jadi hasil output di atas, dapat kita simpulkan bahwa nilai RMSE yang dihasilkan sebesar 5.120427, dimana rata-rata nilai prediksi melenceng sebesar 5.120427 dari nilai aktualnya.
+   Jadi hasil output di atas, dapat kita simpulkan bahwa nilai RMSE yang dihasilkan
+   sebesar 5.120427, dimana rata-rata nilai prediksi melenceng sebesar 5.120427 dari
+   nilai aktualnya.
+
 
 # Referensi
 
-https://rpubs.com/delfitriani/851893
+1. https://rpubs.com/delfitriani/851893
 
-https://jagostat.com/R/regresi-linear-berganda-dalam-pemrograman-r
+2. https://github.com/Mayy262/Algoritma-Linear-Regression
 
-Arhami M & Nasir M., 2020, Data Mining Algoritma dan Implementasi
+3. https://jagostat.com/R/regresi-linear-berganda-dalam-pemrograman-r
+
 
