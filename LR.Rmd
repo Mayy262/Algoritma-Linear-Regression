@@ -110,23 +110,30 @@ abline(model_simple, col = "blue")
 ```
 
 ```{r}
+library(ggplot2)
+```
+
+```{r}
+ggplot(marketing, aes(x = facebook, y = sales)) +
+  geom_point()
+```
+
+
+3. langkah selanjutnya bandingkan nilai aktual dengan hasil prediksi 
+
+```{r}
 summary(model_simple)
 ```
-  Hasil :
 
-  Nilai multiple r-squared sebesar 0.3176.
-
-  Nilai estimasi untuk intercept (β0) adalah  11.4327. 
-
-  Nilai estimasi (β1) adalah  0.1942. 
 
 ```{r}
 pred <- predict(model_simple, test)
 ```
-3. langkah selanjutnya bandingkan nilai aktual dengan hasil prediksi 
+
 ```{r}
 library(dplyr)
 ```
+
 ```{r}
 cbind(test, pred) %>%
   select(facebook, sales, pred)
