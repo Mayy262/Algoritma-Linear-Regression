@@ -2817,8 +2817,6 @@ lurus yang sedekat mungkin dengan semua nilai yang ada, sehingga
 persamaan garis tersebut menjadi benar sebagai representasi dan
 bertujuan mengecek apakah ada hubungan yang signifikan atara variabel
 atau respons yang ada.</p>
-<p>Persamaan regresi linear sederhana :</p>
-<p>Y = β0 +β1.x1</p>
 <p>Contoh Data set linear sederhana</p>
 <pre class="r"><code>Y &lt;- c (31,32,33,34,35,36,37,38, 39, 40, 41, 43)
 X &lt;- c (46, 45, 49, 58, 44, 63, 47, 61, 53, 53, 42, 68)</code></pre>
@@ -2828,8 +2826,7 @@ X &lt;- c (46, 45, 49, 58, 44, 63, 47, 61, 53, 53, 42, 68)</code></pre>
 dengan dua atau lebih variabel independen. Tujuan umum dari regresi
 linear berganda adalah untuk mempelajari lebih lanjut tentang hubungan
 antara beberapa variabel independen (prediktor) dan variabel dependen
-(kriteria). Bentuk persamaan regresinya adalah :</p>
-<p>Y = β0+β0x1+β2x2+…+βnxn</p>
+(kriteria).</p>
 <p>Contoh Data set linear berganda</p>
 <pre class="r"><code>Y &lt;- c (43, 26, 39, 37, 33, 54, 27, 38, 36, 55, 44)
 X1 &lt;- c (66, 45, 47, 48, 57, 43, 65, 76, 61, 42, 67)
@@ -2923,8 +2920,6 @@ abline(model_simple, col = &quot;blue&quot;)</code></pre>
 <p>Nilai multiple r-squared sebesar 0.3176.</p>
 <p>Nilai estimasi untuk intercept (β0) adalah 11.4327.</p>
 <p>Nilai estimasi (β1) adalah 0.1942.</p>
-<p>Sehingga model regresinya :</p>
-<p>Y = 11.4327 + 0.1942x1</p>
 <pre class="r"><code>pred &lt;- predict(model_simple, test)</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>langkah selanjutnya bandingkan nilai aktual dengan hasil

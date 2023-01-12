@@ -37,10 +37,6 @@ Faktor penyebab biasanya dilambangkan x (predictor), sedangkan variabel akibat d
 
 Tujuan regresi linear sederhana adalah untuk mencari persamaan garis lurus yang sedekat mungkin dengan semua nilai yang ada, sehingga persamaan garis tersebut menjadi benar sebagai representasi dan bertujuan mengecek apakah ada hubungan yang signifikan atara variabel atau respons yang ada.
 
-Persamaan regresi linear sederhana :
-
-Y = β0 +β1.x1
-
 Contoh Data set linear sederhana
 ```{r}
 Y <- c (31,32,33,34,35,36,37,38, 39, 40, 41, 43)
@@ -49,9 +45,6 @@ X <- c (46, 45, 49, 58, 44, 63, 47, 61, 53, 53, 42, 68)
 ### Regresi linear berganda (Multiple linear regression) 
 
 Regresi linear berganda adalah hubungan antara satu variabel dependen dengan dua atau lebih variabel independen. Tujuan umum dari regresi linear berganda adalah untuk mempelajari lebih lanjut tentang hubungan antara beberapa variabel independen (prediktor) dan variabel dependen (kriteria).
-Bentuk persamaan regresinya adalah :
-
-Y = β0+β0x1+β2x2+...+βnxn
 
 Contoh Data set linear berganda
 ```{r}
@@ -126,10 +119,6 @@ summary(model_simple)
   Nilai estimasi untuk intercept (β0) adalah  11.4327. 
 
   Nilai estimasi (β1) adalah  0.1942. 
-
-  Sehingga model regresinya :
-
-  Y = 11.4327 + 0.1942x1
 
 ```{r}
 pred <- predict(model_simple, test)
