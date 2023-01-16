@@ -126,6 +126,11 @@ coefficient$estimate
 summary(model_simple)
 ```
 
+```{r}
+# Residual analysis
+plot(model_simple)
+```
+
 
 ```{r}
 pred <- predict(model_simple, test)
